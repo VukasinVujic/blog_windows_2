@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $filable = [
+    protected $fillable = [
         'title','body'
     ];  
 
@@ -17,5 +17,4 @@ class Post extends Model
     protected static function drafts(){
         return self::where('published',0)->get();
     }
-
 }

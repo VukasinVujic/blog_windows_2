@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create' );
     }
 
     /**
@@ -38,8 +38,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+            // Post::create([
+            //     'title'=>$request->title,
+            //     'body'=>$request->body
+            // ]);
+
+            Post::create($request->all());
+            // \Log::info(print_r($request->all(),true));
+                
+            $request->validate([
+                'title'=>'required|min:5',
+                'body'=> 'required'
+            ]);
+         
+         
+            return redirect('http://localhost/VIVIFY/napredni/Laravel/Predavanje_2/radOdKuce/blog/public/posts');    
+        }
 
     /**
      * Display the specified resource.
