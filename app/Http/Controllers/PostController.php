@@ -100,4 +100,25 @@ class PostController extends Controller
     {
         //
     }
+
+
+    public function addComment(Request $request,$id)
+    {
+        // Comment::create([$request->all()]);
+
+        $request->validate([
+            'author' => 'required',
+            'text' => 'required'
+        ]);
+
+
+        Comment::create([
+            'post_id'=>$id,
+            'author'=>$request->author,
+            'text'=>$request->text
+        ]);
+
+        return redirect()->back();
+
+    }
 }
